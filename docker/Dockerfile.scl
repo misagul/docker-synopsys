@@ -1,0 +1,12 @@
+FROM centos:6.10 AS builder
+
+COPY CentOS-6-Vault-BFSU.repo /etc/yum.repos.d/CentOS-Base.repo
+COPY snpslmd-hack.c /root/snpslmd-hack.c
+RUN yum -y update && \
+    yum -y install gcc && \
+    gcc -ldl -shared -fPIC /root/snpslmd-hack.c -o /root/snpslmd-hack.so
+
+FROM centos:6.10
+
+COPY --from=builder /root/snpslmd-hack.so /root/snpslmd-hack.so
+CMD /bin/bash -c 'echo "127.0.0.1 $(hostname)" >> /etc/hosts && cd /opt/Synopsys/scl && LD_PRELOAD=/root/snpslmd-hack.so /lib64/ld-linux-x86-64.so.2 /opt/Synopsys/scl/bin/lmgrd -c synopsys.dat && sleep infinity'

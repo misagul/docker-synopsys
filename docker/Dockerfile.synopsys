@@ -1,0 +1,12 @@
+FROM centos:6.10
+
+COPY CentOS-6-Vault-BFSU.repo /etc/yum.repos.d/CentOS-Base.repo
+RUN yum -y update && \
+    yum -y install unzip redhat-lsb-core gcc gcc-c++
+
+ENV LANG="en_US.UTF-8" \
+    LC_ALL="en_US.UTF-8" \
+    VCS_HOME=/opt/Synopsys/VCS \
+    VERDI_HOME=/opt/Synopsys/Verdi \
+    LM_LICENSE_FILE=3710@localhost \
+    PATH=/opt/Synopsys/VCS/bin:/opt/Synopsys/Verdi/bin:$PATH
