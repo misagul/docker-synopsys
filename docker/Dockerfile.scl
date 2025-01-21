@@ -16,4 +16,4 @@ RUN yum -y update && \
 ENV LD_LIBRARY_PATH="$HOME/.local/lib"
 ENV PATH=$PATH:/opt/Synopsys/scl/bin
     
-CMD /bin/bash -c 'sleep infinity'
+CMD /bin/bash
