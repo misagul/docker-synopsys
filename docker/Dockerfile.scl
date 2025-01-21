@@ -12,17 +12,6 @@ COPY --from=builder /root/snpslmd-hack.so /root/snpslmd-hack.so
 COPY CentOS-6-Vault-BFSU.repo /etc/yum.repos.d/CentOS-Base.repo
 RUN yum -y update && \
     yum -y install gcc wget && \
-    mkdir ~/glibc214 && \
-    cd ~/glibc214 && \
-    wget http://ftp.gnu.org/gnu/glibc/glibc-2.14.tar.gz && \
-    tar zxvf glibc-2.14.tar.gz && \
-    cd glibc-2.14 && \
-    mkdir build && \
-    cd build && \
-    touch $HOME/.local/etc/ld.so.conf && \
-    ../configure --prefix=$HOME/.local && \
-    make -j4 && \
-    make install
 
 ENV LD_LIBRARY_PATH="$HOME/.local/lib"
 ENV PATH=$PATH:/opt/Synopsys/scl/bin
