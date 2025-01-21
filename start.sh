@@ -1,2 +1,2 @@
 docker rm -f scl || true
-docker run -d --name=scl --network=host -v /opt/Synopsys:/opt/Synopsys scl
+docker run -d --name=scl --hostname=libero --mac-address="" -v /opt/Synopsys:/opt/Synopsys scl
