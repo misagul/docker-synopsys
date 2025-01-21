@@ -7,13 +7,13 @@ COPY Synopsys /opt/Synopsys
 RUN yum -y update
 RUN yum -y install gcc wget
 RUN gcc -ldl -shared -fPIC /root/snpslmd-hack.c -o /root/snpslmd-hack.so
-RUN mkdir ~/glibc217
-WORKDIR ~/glibc217
+RUN mkdir /root/glibc217
+WORKDIR /root/glibc217
 RUN wget http://ftp.gnu.org/gnu/glibc/glibc-2.17.tar.gz
 RUN tar -zxvf glibc-2.17.tar.gz
-WORKDIR ~/glibc217/glibc-2.17
+WORKDIR /root/glibc217/glibc-2.17
 RUN mkdir build
-WORKDIR ~/glibc217/glibc-2.17/build
+WORKDIR /root/glibc217/glibc-2.17/build
 RUN ../configure --prefix=$HOME/.local
 RUN make -j4
 RUN touch $HOME/.local/etc/ld.so.conf
