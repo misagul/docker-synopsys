@@ -13,7 +13,7 @@ RUN wget http://ftp.gnu.org/gnu/glibc/glibc-2.17.tar.gz
 RUN tar -zxvf glibc-2.17.tar.gz
 WORKDIR ~/glibc217/glibc-2.17
 RUN mkdir build
-WORKDIR ~/glibc217/ cd build
+WORKDIR ~/glibc217/glibc-2.17/build
 RUN ../configure --prefix=$HOME/.local
 RUN make -j4
 RUN touch $HOME/.local/etc/ld.so.conf
