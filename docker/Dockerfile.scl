@@ -5,11 +5,11 @@ COPY snpslmd-hack.c /root/snpslmd-hack.c
 RUN yum -y update && \
     yum -y install gcc wget && \
     gcc -ldl -shared -fPIC /root/snpslmd-hack.c -o /root/snpslmd-hack.so && \
-    mkdir ~/glibc214 && \
-    cd ~/glibc214 && \
+    mkdir ~/glibc217 && \
+    cd ~/glibc217 && \
     wget http://ftp.gnu.org/gnu/glibc/glibc-2.17.tar.gz && \
-    tar -zxvf glibc-2.14.tar.gz && \
-    cd glibc-2.14 && \
+    tar -zxvf glibc-2.17.tar.gz && \
+    cd glibc-2.17 && \
     mkdir build && \
     cd build && \
     ../configure --prefix=$HOME/.local && \
