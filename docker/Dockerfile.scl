@@ -2,6 +2,8 @@ FROM centos:6.10
 
 COPY CentOS-6-Vault-BFSU.repo /etc/yum.repos.d/CentOS-Base.repo
 COPY snpslmd-hack.c /root/snpslmd-hack.c
+COPY /opt/Synopsys /opt/Synopsys
+
 RUN yum -y update && \
     yum -y install gcc wget && \
     gcc -ldl -shared -fPIC /root/snpslmd-hack.c -o /root/snpslmd-hack.so && \
