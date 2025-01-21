@@ -6,7 +6,7 @@ RUN yum -y update && \
     yum -y install gcc wget && \
     gcc -ldl -shared -fPIC /root/snpslmd-hack.c -o /root/snpslmd-hack.so
 
-ENV LD_LIBRARY_PATH="$HOME/.local/lib"
+ENV LD_LIBRARY_PATH=$HOME/.local/lib
 ENV PATH=$PATH:/opt/Synopsys/scl/bin
     
 CMD /bin/bash
