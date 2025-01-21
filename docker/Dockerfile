@@ -14,12 +14,13 @@ RUN tar -zxvf glibc-2.17.tar.gz
 WORKDIR /root/glibc217/glibc-2.17
 RUN mkdir build
 WORKDIR /root/glibc217/glibc-2.17/build
-RUN ../configure --prefix=$HOME/.local
+RUN ../configure --prefix=/root/.local
 RUN make -j4
-RUN touch $HOME/.local/etc/ld.so.conf
+RUN touch /root/.local/etc/ld.so.conf
 RUN make install
 
-ENV LD_LIBRARY_PATH=$HOME/.local/lib
+ENV LD_LIBRARY_PATH=/root/.local/lib
 ENV PATH=$PATH:/opt/Synopsys/scl/bin
-    
+ENV 
+
 CMD /bin/bash
