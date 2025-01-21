@@ -1,17 +1,10 @@
-FROM centos:6.10 AS builder
+FROM centos:6.10
 
 COPY CentOS-6-Vault-BFSU.repo /etc/yum.repos.d/CentOS-Base.repo
 COPY snpslmd-hack.c /root/snpslmd-hack.c
 RUN yum -y update && \
-    yum -y install gcc && \
+    yum -y install gcc wget && \
     gcc -ldl -shared -fPIC /root/snpslmd-hack.c -o /root/snpslmd-hack.so
-
-FROM centos:6.10
-
-COPY --from=builder /root/snpslmd-hack.so /root/snpslmd-hack.so
-COPY CentOS-6-Vault-BFSU.repo /etc/yum.repos.d/CentOS-Base.repo
-RUN yum -y update && \
-    yum -y install gcc wget
 
 ENV LD_LIBRARY_PATH="$HOME/.local/lib"
 ENV PATH=$PATH:/opt/Synopsys/scl/bin
