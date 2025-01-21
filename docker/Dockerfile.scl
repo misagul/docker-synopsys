@@ -22,7 +22,7 @@ RUN yum -y update && \
     touch $HOME/.local/etc/ld.so.conf && \
     ../configure --prefix=$HOME/.local && \
     make -j4 && \
-    make install && \
+    make install
 
 ENV LD_LIBRARY_PATH="$HOME/.local/lib"
 ENV PATH=$PATH:/opt/Synopsys/scl/bin
