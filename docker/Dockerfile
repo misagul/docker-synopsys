@@ -8,15 +8,15 @@ RUN yum -y update
 RUN yum -y install gcc wget
 RUN gcc -ldl -shared -fPIC /root/snpslmd-hack.c -o /root/snpslmd-hack.so
 RUN mkdir ~/glibc217
-RUN cd ~/glibc217
+WORKDIR ~/glibc217
 RUN wget http://ftp.gnu.org/gnu/glibc/glibc-2.17.tar.gz
 RUN tar -zxvf glibc-2.17.tar.gz
-RUN cd glibc-2.17
+WORKDIR ~/glibc217/glibc-2.17
 RUN mkdir build
-RUN cd build
+WORKDIR ~/glibc217/ cd build
 RUN ../configure --prefix=$HOME/.local
 RUN make -j4
-# RUN touch $HOME/.local/etc/ld.so.conf
+RUN touch $HOME/.local/etc/ld.so.conf
 RUN make install
 
 ENV LD_LIBRARY_PATH=$HOME/.local/lib
